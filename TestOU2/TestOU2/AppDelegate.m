@@ -18,21 +18,43 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    for (int i = 100; i < 1000; i ++) {
-        NSString *path = [NSString stringWithFormat:@"/Users/aylios/Desktop/cond-icon-heweather/%dn.png",i];
-        NSFileManager * file = [NSFileManager defaultManager];
-        NSData *readData =[file contentsAtPath:path];
-        
-        if(readData != nil){
+//    for (int i = 100; i < 1000; i ++) {
+//        NSString *path = [NSString stringWithFormat:@"/Users/aylios/Desktop/cond-icon-heweather/%d.png",i];
+//        NSFileManager * file = [NSFileManager defaultManager];
+//        NSData *readData =[file contentsAtPath:path];
+//
+//        if(readData != nil){
+//        UIImage *image = [UIImage imageWithData: readData];
+//
+//             UIImage *finishImage0 = [self grayscale:image type:4];
+//
+//
+//
+//
+//        NSData *imageData = UIImagePNGRepresentation(finishImage0);
+//
+//
+//        [imageData writeToFile: [NSString stringWithFormat:@"/Users/aylios/Desktop/未命名文件夹/%d.png",i] options:NSDataWritingAtomic error:nil];
+//        }
+//    }
+    
+    
+    NSString *path = @"/Users/aylios/Desktop/cloud.png";
+    NSFileManager * file = [NSFileManager defaultManager];
+    NSData *readData =[file contentsAtPath:path];
+    
+    if(readData != nil){
         UIImage *image = [UIImage imageWithData: readData];
         
-        UIImage *finishImage = [self grayscale:image type:3];
+        UIImage *finishImage0 = [self grayscale:image type:4];
         
-        NSData *imageData = UIImagePNGRepresentation(finishImage);
-       
         
-        [imageData writeToFile: [NSString stringWithFormat:@"/Users/aylios/Desktop/未命名文件夹/%dn.png",i] options:NSDataWritingAtomic error:nil];
-        }
+        
+        
+        NSData *imageData = UIImagePNGRepresentation(finishImage0);
+        
+        
+        [imageData writeToFile: [NSString stringWithFormat:@"/Users/aylios/Desktop/未命名文件夹/%@.png",@"cloud"] options:NSDataWritingAtomic error:nil];
     }
     
     return YES;
@@ -147,6 +169,12 @@
                                         *(tmp + 0) = 255 - red;
                                         *(tmp + 1) = 255 - green;
                                         *(tmp + 2) = 255 - blue;
+                                        break;
+                    
+                case 4://色反転
+                                        *(tmp + 0) = 0;
+                                        *(tmp + 1) = 0;
+                                        *(tmp + 2) = 0;
                                         break;
                     
                                     default:
